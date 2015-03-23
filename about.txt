@@ -1,0 +1,10 @@
+User manual
+instructions:
+inp [v] (num)
+out [v]
+inc [v]
+dec [v]
+adc [v] [v] (num)
+adv [v] [v] [v]
+muc [v] [v] (num)
+muv [v] [v] [v]
