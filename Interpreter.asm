@@ -25,12 +25,12 @@ mainLoop:
 BIOS_getchar:
 
 _waitgc:
-    in   	a,(12h)
-    bit  	1,a
-    jr   	z,_waitgc
+	in   	a,(12h)
+	bit  	1,a
+	jr   	z,_waitgc
 
-    in   	a,(13h)
-    ret
+	in		a,(13h)
+	ret
         
         
         
@@ -50,7 +50,6 @@ _waitpc:
     pop  	af
     out  	(13h),a
     ret
-        
         
         
         
@@ -358,11 +357,18 @@ BASIC_ComOut:
 
 	add    	hl,bc ; hl adresa memorije sa koje se ispisuje
 
+	ld     	b,0
 	ld     	a,(hl)
 	sla    	a
+	jr		nc,_ComOutC ; ako ne postoji keri preskoci dodavanje
+	Inc		b
+_ComOutC:
+	sla		b
 	sla    	a
+	jr		nc,_ComOutC1 ; ako ne postoji keri preskoci dodavanje
+	Inc		b
+_ComOutC1:
 	ld     	hl,MAT_binToChar
-	ld     	b,0
 	ld     	c,a
 
 	add    	hl,bc
